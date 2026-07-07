@@ -12,16 +12,17 @@ def fetch_hackernews(today_date: datetime) -> list[dict]:
     Returns:
         list[dict]: A list of article metadata in dictionary format published today.
     """
-    ids = requests.get("https://hacker-news.firebaseio.com/v0/newstories.json").json()
-    articles = []
-    for id in ids:
-        article = requests.get(f"https://hacker-news.firebaseio.com/v0/item/{id}.json").json()
-        if article.get("type") != "story":
-            continue
-        published_time = datetime.fromtimestamp(article.get("time"))
-        if published_time >= today_date:
-            articles.append(article)
-    return articles
+    timestamp = int(today_date.timestamp())
+    response = requests.get(
+        f"https://hn.algolia.com/api/v1/search_by_date",
+        params={
+            "tags": "story",
+            "numericFilters": f"created_at_i>{timestamp}",
+            "hitsPerPage": 500
+        },
+        timeout=10
+    )
+    return response.json().get("hits", [])
 
 
 def fetch_article_content(url: str) -> str:
