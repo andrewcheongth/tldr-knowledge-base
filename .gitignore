@@ -6,3 +6,8 @@ venv/
 .env
 test.ipynb
 titles.md
+shortlisted_titles.md
+shortlist.json
+shortlisted_articles.md
+articles.md
+digest.md
