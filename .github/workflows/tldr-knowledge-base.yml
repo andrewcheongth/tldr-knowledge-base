@@ -33,6 +33,7 @@ jobs:
           ANTHROPIC_MODEL: claude-haiku-4-5-20251001
         run: |
           claude -p "Run today's tech digest per CLAUDE.md" \
-            --allowedTools "Bash(python3 *),Write,WebFetch" \
+            --allowedTools "Bash,Write,WebFetch" \
             --permission-mode dontAsk \
+            --output-format stream-json \
             --verbose
