@@ -37,3 +37,9 @@ jobs:
             --permission-mode dontAsk \
             --output-format stream-json \
             --verbose
+
+      - name: Send Telegram digest
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 utils/notifyUtils.py
