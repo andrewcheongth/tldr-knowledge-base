@@ -1,5 +1,8 @@
 import requests
 from pathlib import Path
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+TELEGRAM_MESSAGE_LIMIT = 4096
 
 def load_digest(path: str = "digest.md") -> str:
     digest_path = Path(path)
@@ -12,23 +15,36 @@ def load_digest(path: str = "digest.md") -> str:
         raise ValueError(f"{path} exists but is empty")
     return content
 
+
+def chunk_message(
+    text: str,
+    limit: int = TELEGRAM_MESSAGE_LIMIT,
+) -> list[str]:
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=limit,
+        chunk_overlap=0,
+        separators=["\n\n", "\n", " "]
+    )
+    return text_splitter.split_text(text)
+
+
 def send_telegram_message(
     bot_token: str,
     chat_id: str,
     path: str = "digest.md",
 ) -> None:
     message = load_digest(path)
-    response = requests.post(
-        f"https://api.telegram.org/bot{bot_token}/sendMessage",
-        json={
-            "chat_id": chat_id,
-            "text": message,
-            "parse_mode": "Markdown",
-            "disable_web_page_preview": False,
-        },
-        timeout=10,
-    )
-    response.raise_for_status()
+    for chunk in chunk_message(message):
+        response = requests.post(
+            f"https://api.telegram.org/bot{bot_token}/sendMessage",
+            json={
+                "chat_id": chat_id,
+                "text": chunk,
+                "parse_mode": "Markdown",
+            },
+            timeout=10,
+        )
+        response.raise_for_status()
 
 
 if __name__ == "__main__":
