@@ -2,18 +2,18 @@
 
 Compiled on: <today's date>
 
-## 1. <Article 1>
+## 1. <Article 1 Title>
 
 [Article 1 content]
 
 ---
 
-## 2. <Article 2>
+## 2. <Article 2 Title>
 
 [Article 2 content]
 
 ---
 
-## 3. <Article 3>
+## 3. <Article 3 Title>
 
 [Article 3 content]
