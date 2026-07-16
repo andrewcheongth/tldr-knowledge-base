@@ -52,6 +52,7 @@ Harness Engineering for Coding Agents
 - You are not required to reference the article for each concept. Simply add the URL to the reference appendix.
 - Aim for parsimony and avoid unnecessary verbosity.
 - Consider the best way to present the technical concept (e.g. lists, tables, code blocks, equation blocks, tree diagrams, etc.)
+- Remember to change the "Last updated" tag to the latest date and time according to the format `<day of week> <DD MMM YYYY> <HH:MM in SGT>` in the Notion page.
 
 ## Constraints
 

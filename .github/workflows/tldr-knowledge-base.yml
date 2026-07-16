@@ -34,7 +34,7 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: |
           claude -p "Run today's tech digest per CLAUDE.md" \
-            --allowedTools "Bash,Write,WebFetch,mcp__notion__notion-search,mcp__notion__notion-fetch,mcp__notion__notion-create-pages,mcp__notion__notion-update-page" \
+            --allowedTools "Bash,Write,WebFetch,mcp__notion__*" \
             --permission-mode dontAsk \
             --output-format stream-json \
             --verbose
