@@ -35,4 +35,4 @@ Generate a single markdown file `digest.md` in the project root containing the T
 ## Summary Constraints
 
 - Keep the summary concise. This summary is to be read within a Telegram message, so it should be brief and to the point.
-- Telegram messages have a character limit of 4096 characters. As a rule of thumb, try to keep the entire summary under 45 sentences.
+- Telegram messages have a character limit of 4096 characters. As a rule of thumb, try to keep the entire summary under 30 sentences.
