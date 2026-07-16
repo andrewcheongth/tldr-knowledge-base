@@ -13,7 +13,7 @@ The intended end-to-end flow (partially implemented):
 1. **Fetch** — `utils/fetchUtils.py` pulls HN stories via the Algolia search API (`fetch_hackernews`) and scrapes article body text via trafilatura (`fetch_article_content`).
 2. **Shortlist** — `/shortlist` skill reads `titles.md` → selects 10 by headline → selects 3 by content → writes `shortlisted_titles.md` and `shortlisted_articles.md`.
 3. **Summarise** — `/summarise` skill distills each shortlisted article into: plain summary, key technical concepts, why it matters.
-4. **Distill** — push durable concepts to Notion (not yet implemented).
+4. **Update** — `/update-notion` skill provides guidance on how to update the Notion knowledge base with distilled technical concepts.
 5. **Notify** — send a single daily Telegram digest message.
 
 `main.py` is the intended entry point but is currently a stub.
@@ -23,6 +23,7 @@ The intended end-to-end flow (partially implemented):
 Custom Claude Code skills live in `.claude/skills/`:
 
 - `/shortlist` — two-stage article filtering (headline → content). Inputs: `titles.md`, `articles.md`. Outputs: `shortlisted_titles.md`, `shortlisted_articles.md`.
+- `/update-notion` — updates the knowledge base with the technical concepts distilled from the articles
 - `/summarise` — distills a single article into a TL;DR.
 
 ## Key Dependencies

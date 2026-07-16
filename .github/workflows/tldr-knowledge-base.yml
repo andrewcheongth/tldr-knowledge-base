@@ -31,9 +31,10 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: claude-haiku-4-5-20251001
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: |
           claude -p "Run today's tech digest per CLAUDE.md" \
-            --allowedTools "Bash,Write,WebFetch" \
+            --allowedTools "Bash,Write,WebFetch,mcp__notion__notion-search,mcp__notion__notion-fetch,mcp__notion__notion-create-pages,mcp__notion__notion-update-page" \
             --permission-mode dontAsk \
             --output-format stream-json \
             --verbose

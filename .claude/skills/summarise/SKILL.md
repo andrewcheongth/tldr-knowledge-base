@@ -30,9 +30,30 @@ Given 3 shortlisted tech news articles, distill each article into a TL;DR versio
 
 ## Template
 
-Generate a single markdown file `digest.md` in the project root containing the TL;DR summaries of the 3 articles, each separated by a `---` line. See `.claude/skills/summarise/template/digest_template.md` for the template to use when generating the TL;DR summaries.
+Generate a single markdown file `digest.md` in the project root containing the TL;DR summaries of the 3 articles, each separated by a `---` line. Generate the summaries using the following template.
 
-## Summary Constraints
+```markdown
+# Tech Digest — <DD MMM YYYY>
+
+## 1. <Article 1 Title>
+
+[Article 1 content]
+
+---
+
+## 2. <Article 2 Title>
+
+[Article 2 content]
+
+---
+
+## 3. <Article 3 Title>
+
+[Article 3 content]
+```
+
+## Guidance
 
 - Keep the summary concise. This summary is to be read within a Telegram message, so it should be brief and to the point.
 - Telegram messages have a character limit of 4096 characters. As a rule of thumb, try to keep the entire summary under 30 sentences.
+- Insert emojis wherever appropriate to make the summary more engaging and visually appealing.

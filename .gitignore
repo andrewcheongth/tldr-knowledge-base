@@ -4,7 +4,7 @@ __pycache__/
 .venv/
 venv/
 .env
-test.ipynb
+.vscode/
 titles.md
 shortlist.json
 shortlisted_titles.md
