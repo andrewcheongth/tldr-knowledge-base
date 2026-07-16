@@ -1,0 +1,8 @@
+{
+  "enabledMcpjsonServers": [
+    "notion"
+  ],
+  "permissions": {
+    "allow": ["Bash", "Write", "WebFetch", "mcp__notion__*"]
+  }
+}
