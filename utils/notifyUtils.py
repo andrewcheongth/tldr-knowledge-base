@@ -40,7 +40,6 @@ def send_telegram_message(
             json={
                 "chat_id": chat_id,
                 "text": chunk,
-                "parse_mode": "Markdown",
             },
             timeout=10,
         )
