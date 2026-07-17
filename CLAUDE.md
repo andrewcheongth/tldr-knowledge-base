@@ -24,7 +24,7 @@ Custom Claude Code skills live in `.claude/skills/`:
 
 - `/shortlist` — two-stage article filtering (headline → content). Inputs: `titles.md`, `articles.md`. Outputs: `shortlisted_titles.md`, `shortlisted_articles.md`.
 - `/update-notion` — updates the knowledge base with the technical concepts distilled from the articles
-- `/summarise` — distills a single article into a TL;DR.
+- `/summarise` — distills a single article into a TL;DR digest.
 
 ## Key Dependencies
 
