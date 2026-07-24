@@ -39,6 +39,36 @@ jobs:
             --output-format stream-json \
             --verbose
 
+      - name: Validate digest.md exists
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: claude-haiku-4-5-20251001
+        run: |
+          if [ ! -f digest.md ]; then
+            echo "⚠️ WARNING: digest.md was not generated."
+            echo ""
+            echo "Feeding back to Claude for debugging..."
+
+            claude -p "digest.md was not generated. Please:
+              1. Check if shortlisted_titles.md and shortlisted_articles.md exist
+              2. If they exist, run the summarise/ skill on the shortlisted articles
+              3. Compile the summaries into a digest.md file
+              4. Verify digest.md was created with: ls -lah digest.md
+              
+              If the files don't exist, please re-run the full workflow from scratch: fetch -> shortlist -> summarise to digest.md." \
+              --allowedTools "Bash,Write,WebFetch" \
+              --permission-mode dontAsk \
+              --output-format stream-json \
+              --verbose
+          fi
+
+          if [ ! -f digest.md ]; then
+            echo "❌ ERROR: digest.md was not generated after feedback to Claude."
+            exit 1
+          fi
+
+          echo "✅ digest.md was successfully generated."
+
       - name: Send Telegram digest
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
